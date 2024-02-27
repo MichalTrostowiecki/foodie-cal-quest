@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RecipeAnalysis from './components/recipeAnalysis';
+import RecipeAnalysis from './components/RecipeAnalysis';
 import Home from './components/HomePage';
 
 function App() {
