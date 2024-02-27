@@ -1,13 +1,19 @@
 import './App.css'
-import { Button } from 'flowbite-react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RecipeAnalysis from './components/recipeAnalysis';
+import Home from './components/HomePage';
 
 function App() {
   
 
 	return (
-			<div>
-				<h1>Foodie Cal Quest</h1>
-			</div>
+			<Router>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='recipe-analysis' element={<RecipeAnalysis />} />
+				</Routes>
+				
+			</Router>
 		)
 }
 
