@@ -44,7 +44,6 @@ const RecipeAnalysis = () => {
 
         // <pre> tag is used to display preformatted text in HTML, preserving spaces and line breaks.
         <div>
-            <Navbar />
             <h1>Recipe Analysis</h1>
             <button onClick={handleFetch}>Fetch Data</button>
             {showLabel ? <NutritionalLabel data={data}/> : ""}
