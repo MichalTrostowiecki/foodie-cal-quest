@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RecipeAnalysis from "../recipeAnalysis";
+import RecipeAnalysis from "../RecipeAnalysis";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
