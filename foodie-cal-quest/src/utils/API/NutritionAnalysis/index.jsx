@@ -6,10 +6,7 @@ export default {
             const requestBody = {
                 "title": "Simple Tomato Pasta",
                 "ingr": [
-                    "200g pasta",
-                    "2 tomatoes",
-                    "1 tbsp olive oil",
-                    "Salt to taste"
+                    "400g bucatini 4 garlic cloves, sliced 1-2 tsp chilli flakes 125ml white wine 150ml double cream"
                 ]
             }
             const API_key = "129c84ea6bbddd20b24d33834cfdb94d";
