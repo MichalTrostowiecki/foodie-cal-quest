@@ -124,6 +124,7 @@ const NutritionalLabel = ( { data } ) => {
     )
 }
 
+// props validation
 NutritionalLabel.propTypes = {
     data: PropTypes.shape({
       calories: PropTypes.number.isRequired,
