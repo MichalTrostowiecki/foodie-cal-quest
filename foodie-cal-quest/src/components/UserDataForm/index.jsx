@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const UserDataForm = ({ setUser }) => {
+const UserDataForm = ({ setUser, calculateCalories }) => {
     const [heightUnit, setHeightUnit] = useState('cm');
  
     const handleSubmit = (event) => {
@@ -8,8 +8,38 @@ const UserDataForm = ({ setUser }) => {
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
 
+        // Convert height to cm to later 
+        if(heightUnit === 'meters') {
+            data.heightInCM = data.heightInCM * 100;
+        } else if (heightUnit === 'inches' ) {
+            const feetToCm = (data.heightFeet || 0) * 30.48;
+            const inchesToCm = (data.heightInches || 0) * 2.54;
+            data.heightInCM = Math.round(feetToCm + inchesToCm);
+            delete data.heightFeet;
+            delete data.heightInches;
+        }
+
+
+        // Convert weight to KG
+        switch (data.weightUnit) {
+            case 'stones':
+                data.weightKG = Math.round(parseFloat(data.weight) * 6.35029);
+                break;
+            case 'lbs':
+                data.weightKG = Math.round(parseFloat(data.weight) * 0.453592);
+                break;
+            // No conversion needed if the weight is already in kilograms
+            case 'kg':
+            default:
+                data.weightKG = Math.round(parseFloat(data.weight));
+                break;
+        }
+        delete data.weightUnit;
+
         setUser(data);
+        calculateCalories();
     };
+
 
     return (
         <form onSubmit={handleSubmit} className="max-w-sm mx-auto" autoComplete="on">
@@ -61,8 +91,8 @@ const UserDataForm = ({ setUser }) => {
                 {/* Conditional Height Input */}
                 {heightUnit !== 'inches' ? (
                     <div>
-                        <label htmlFor="height" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your Height</label>
-                        <input type="number" step="0.1" id="height" name="height" autoComplete="height" placeholder="Enter height" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                        <label htmlFor="heightInCM" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your Height</label>
+                        <input type="number" step="0.01" id="height" name="heightInCM" autoComplete="height" placeholder="Enter height" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                     </div>
                 ) : (
                     <div className="flex justify-between space-x-4">
@@ -88,8 +118,8 @@ const UserDataForm = ({ setUser }) => {
                 </div>
                 {/* Weight Unit Selection */}
                 <div className="w-1/4">
-                    <label htmlFor="weight-unit" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Weight Unit</label>
-                    <select id="weight-unit" name="weight-unit" autoComplete="weight-unit" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <label htmlFor="weightUnit" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Weight Unit</label>
+                    <select id="weightUnit" name="weightUnit" autoComplete="weight-unit" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="kg">KG</option>
                         <option value="stones">Stones</option>
                         <option value="lbs">LBS</option>
@@ -100,8 +130,8 @@ const UserDataForm = ({ setUser }) => {
             
             {/* Activity Level Section */}
             <div className="mb-5">
-                <label htmlFor="activity-level" className="block mb-2 text-sm font-medium text-gray-900 dark:text:white">Choose your activity level</label>
-                <select id="activity-level" name="activity-level" autoComplete="activity level" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <label htmlFor="activityLevel" className="block mb-2 text-sm font-medium text-gray-900 dark:text:white">Choose your activity level</label>
+                <select id="activityLevel" name="activityLevel" autoComplete="activity level" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="1.3">({"<"}1.4) Extremely inactive</option>
                     <option value="1.5">(1.4-1.6) Sedentary-Office Worker, little or no exercise</option>
                     <option value="1.8">(1.7-2) Construction worker or person running one hour daily</option>
