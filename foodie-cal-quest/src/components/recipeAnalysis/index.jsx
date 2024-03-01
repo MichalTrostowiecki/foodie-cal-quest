@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar";
 import NutritionAnalysis from "../../utils/API/NutritionAnalysis";
 import NutritionalLabel from "../NutritionalLabel";
 import sampleData from "../../../../sampleData.json"
@@ -44,7 +43,6 @@ const RecipeAnalysis = () => {
 
         // <pre> tag is used to display preformatted text in HTML, preserving spaces and line breaks.
         <div>
-            <Navbar />
             <h1>Recipe Analysis</h1>
             <button onClick={handleFetch}>Fetch Data</button>
             {showLabel ? <NutritionalLabel data={data}/> : ""}
