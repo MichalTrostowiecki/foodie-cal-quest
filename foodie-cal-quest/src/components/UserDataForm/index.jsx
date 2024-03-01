@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const UserDataForm = ({ setUser, calculateCalories }) => {
+const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
     const [heightUnit, setHeightUnit] = useState('cm');
  
     const handleSubmit = (event) => {
@@ -23,22 +23,44 @@ const UserDataForm = ({ setUser, calculateCalories }) => {
         // Convert weight to KG
         switch (data.weightUnit) {
             case 'stones':
-                data.weightKG = Math.round(parseFloat(data.weight) * 6.35029);
+                data.weightKG = Math.round(parseFloat(data.weightKG) * 6.35029);
                 break;
             case 'lbs':
-                data.weightKG = Math.round(parseFloat(data.weight) * 0.453592);
+                data.weightKG = Math.round(parseFloat(data.weightKG) * 0.453592);
                 break;
             // No conversion needed if the weight is already in kilograms
             case 'kg':
             default:
-                data.weightKG = Math.round(parseFloat(data.weight));
+                data.weightKG = Math.round(parseFloat(data.weightKG));
                 break;
         }
         delete data.weightUnit;
 
         setUser(data);
-        calculateCalories();
+        //Return base calories amount from calculateCalories() that user needs to maintain weight
+        let baseCal = calculateCalories(data);
+        
+        // Calculate calories based on goal : lose/maintain/gain 
+        switch (data.goal) {
+            case 'gain':
+                // add 15% to base calories
+                baseCal = Math.round(baseCal * 1.15);
+                calculateMacro(baseCal, data);
+                break;
+            case 'lose':
+                // subtract 15% from base calories
+                baseCal = Math.round(baseCal * 0.85);
+                calculateMacro(baseCal, data);
+                break;
+            default:
+                calculateMacro(baseCal, data);
+                
+        }
+
     };
+
+
+
 
 
     return (
@@ -113,8 +135,8 @@ const UserDataForm = ({ setUser, calculateCalories }) => {
             <div className="mb-5 flex justify-between">
                 {/* Weight Input */}
                 <div className="w-3/4 pr-2">
-                    <label htmlFor="weight" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your weight</label>
-                    <input type="number" step="0.1" id="weight" name="weight" autoComplete="weight" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <label htmlFor="weightKG" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your weight</label>
+                    <input type="number" step="0.1" id="weightKG" name="weightKG" autoComplete="weight" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                 </div>
                 {/* Weight Unit Selection */}
                 <div className="w-1/4">
