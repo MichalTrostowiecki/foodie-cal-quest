@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar";
 import NutritionAnalysis from "../../utils/API/NutritionAnalysis";
 import NutritionalLabel from "../NutritionalLabel";
 import sampleData from "../../../../sampleData.json"
