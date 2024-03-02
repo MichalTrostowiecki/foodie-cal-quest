@@ -22,8 +22,8 @@ export default {
             const apiKEY = '&app_key=0f50b6574cfb50c8691da1f9049834ff';
             // Michal's app ID
             const apiID = '&app_id=d74e6a59';
-            const baseURL = 'https://api.edamam.com/api/recipes/v2?type=public&q=';
-            
+            const baseURL = 'https://api.edamam.com/api/recipes/v2?type=public&';
+        
             return axios.get(baseURL + query + apiID + apiKEY)
     
         }
