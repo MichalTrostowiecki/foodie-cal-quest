@@ -1,17 +1,30 @@
-
+import { Link } from 'react-router-dom'
 
 const RecipeCard = ( { data } ) => {
 
-    console.log("recipe Card data: ", data.recipe)
+    // Encode the label to handle spaces and special characters in the URL
+    const recipePath = `/recipe-search/${encodeURIComponent(data.recipe.label)}`;
+
+    //console.log("recipe Card data: ", data.recipe)
 
 
 
     return (
-        <div className="border rounded-lg overflow-hidden shadow-lg bg-white w-full">
+        <div className="relative border rounded-lg overflow-hidden shadow-lg bg-white w-full group hover:cursor-pointer">
+            {/* Existing content */}
             <div className="text-center p-4 bg-gray-100 text-xs">
                 <p className="font-bold truncate">{data.recipe.label}</p>
             </div>
-            <img className="w-full h-32 object-cover" src={data.recipe.image}></img>
+            <img className="w-full h-32 object-cover" src={data.recipe.image} alt={data.recipe.label} />
+
+            {/* Overlay with Button */}
+            <div className="absolute inset-0 bg-black bg-opacity-0 flex justify-center items-center opacity-0 group-hover:bg-opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                <Link to={recipePath}>
+                    <button className="text-white font-bold py-2 px-4 rounded">
+                        Details
+                    </button>
+                </Link>
+            </div>
         </div>
     )
 }
