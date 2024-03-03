@@ -19,9 +19,9 @@ export default {
         searchRecipe: function(query) {
             console.log("SearchRecipe Fetch has been called")
             // Michal's key
-            const apiKEY = '&app_key=0f50b6574cfb50c8691da1f9049834ff';
+            const apiKEY = '&app_key=a2f2545cd44d9f38bf1301d032e2905f';
             // Michal's app ID
-            const apiID = '&app_id=d74e6a59';
+            const apiID = '&app_id=d39ab340';
             const baseURL = 'https://api.edamam.com/api/recipes/v2?type=public&';
         
             return axios.get(baseURL + query + apiID + apiKEY)
