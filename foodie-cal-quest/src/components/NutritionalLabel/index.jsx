@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const NutritionalLabel = ({ data, recipeDetails }) => {
+const NutritionalLabel = ({ nutritionInfo }) => {
     // Initialize your variables here
-    let calories, cuisineType, totalWeight, totalDaily, dietLabels, dishType, healthLabels, ingredients, mealType, totalNutrients, totalNutrientsKCal;
-
-    // Determine which data source to use
-    const source = recipeDetails.recipe || data;
-    console.log("recipeDetails", recipeDetails.recipe.calories)
 
 
     // Now assign the values from the chosen source
-    if(source) {
-        ({ calories, cuisineType, totalWeight, totalDaily, dietLabels, dishType, healthLabels, ingredients, mealType, totalNutrients, totalNutrientsKCal } = source);
-    }
+    
+    const { 
+        calories, 
+        totalWeight, 
+        totalDaily, 
+        totalNutrients, 
+     } = nutritionInfo;
+    
 
     const roundNumber = (num) => {
         return Math.round(num)
@@ -118,20 +118,20 @@ const NutritionalLabel = ({ data, recipeDetails }) => {
 
 // props validation
 NutritionalLabel.propTypes = {
-    data: PropTypes.shape({
-      calories: PropTypes.number.isRequired,
-      cuisineType: PropTypes.arrayOf(PropTypes.string),
-      totalWeight: PropTypes.number.isRequired,
-      totalDaily: PropTypes.object.isRequired,
-      dietLabels: PropTypes.arrayOf(PropTypes.string),
-      dishType: PropTypes.arrayOf(PropTypes.string),
-      healthLabels: PropTypes.arrayOf(PropTypes.string),
-      ingredients: PropTypes.array.isRequired,
-      mealType: PropTypes.arrayOf(PropTypes.string),
-      totalNutrients: PropTypes.object.isRequired,
-      totalNutrientsKCal: PropTypes.object.isRequired,
-      recipeDetails: PropTypes.object,
+    nutritionInfo: PropTypes.shape({
+        calories: PropTypes.number.isRequired,
+        cuisineType: PropTypes.arrayOf(PropTypes.string).isRequired,
+        totalWeight: PropTypes.number.isRequired,
+        totalDaily: PropTypes.object.isRequired,
+        dietLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+        dishType: PropTypes.arrayOf(PropTypes.string).isRequired,
+        healthLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+        ingredients: PropTypes.array.isRequired,
+        mealType: PropTypes.arrayOf(PropTypes.string).isRequired,
+        totalNutrients: PropTypes.object.isRequired,
+        totalNutrientsKCal: PropTypes.object,
+        // Include any other fields you have in nutritionInfo here
     }).isRequired,
-  };
+};
 
 export default NutritionalLabel;

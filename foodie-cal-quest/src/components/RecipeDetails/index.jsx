@@ -46,8 +46,8 @@ const RecipeDetails = () => {
                 <h2 className="text-2xl font-semibold mb-4">Instructions</h2>
                 <p className="mb-4">For detailed instructions, visit the recipe on <a href={recipeDetails.recipe.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">the source website</a>.</p>
             </div>
-            <div className='mx-auto'>
-            <NutritionalLabel  recipeDetails={recipeDetails}/>
+            <div className='mx-auto p'>
+            <NutritionalLabel  nutritionInfo={recipeDetails.recipe}/>
             </div>
         </div>
     )
