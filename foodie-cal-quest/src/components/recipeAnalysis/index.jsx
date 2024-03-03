@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NutritionAnalysis from "../../utils/API";
 import NutritionalLabel from "../NutritionalLabel";
-import sampleData from "../../../../sampleData.json"
+
 import ErrorAlert from "../ErrorAlert";
 
 const RecipeAnalysis = () => {
@@ -43,8 +43,8 @@ const RecipeAnalysis = () => {
             })
             .catch(err => {
                 const message = err.response?.data?.message || "An unexpected error occurred. Please try again.";
-                setError(message); // Set a user-friendly error message
-                setShowError(true); // Utilize showError state for API errors too
+                setError(message); // Message for the user
+                setShowError(true); // If any error from API show Error
                 setIsLoading(false);
             });
         
@@ -56,9 +56,9 @@ const RecipeAnalysis = () => {
 
         
         <div className="mx-auto max-w-4xl p-5">
-            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analysis</h1> {/* Center the title, increase its size, and add margin */}
+            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analysis</h1>
             {showError && <ErrorAlert errorMessage={error} setShowError={setShowError} />}
-            <div className="flex flex-col md:flex-row justify-around gap-4"> {/* Stack elements vertically on mobile, switch to horizontal on larger screens */}
+            <div className="flex flex-col md:flex-row justify-around gap-4">
             
                 <div >
                     <label htmlFor="recipeArea" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Recipe</label>
