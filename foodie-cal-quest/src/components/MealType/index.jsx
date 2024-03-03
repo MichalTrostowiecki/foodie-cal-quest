@@ -35,6 +35,7 @@ const MealType = ( { mealType } ) => {
             .then(resp => {
                 // addRecipes is a function coming from our custom hook
                 addRecipesForMealType(mealType, resp.data.hits)
+                console.log(resp)
                 setIsLoading(false)
             })
             .catch(err => console.log(err));

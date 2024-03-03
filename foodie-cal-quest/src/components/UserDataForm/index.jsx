@@ -95,16 +95,16 @@ const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
             
             {/* Age Section */}
             <div className="mb-5">
-                <label htmlFor="age" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your age</label>
-                <input type="number" id="age" name="age" autoComplete="age" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                <label htmlFor="userAge" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your age</label>
+                <input type="number" id="userAge" name="age" autoComplete="age" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
             </div>
             {/* End of Age Section */}
            
             {/* Height Section */}
             <div className="mb-5">
                 {/* Height Unit Selection */}
-                <label htmlFor="height-unit" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height Unit</label>
-                <select id="height-unit" name="height-unit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <label htmlFor="userHeight" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height Unit</label>
+                <select id="userHeight" name="height-unit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
                     <option value="cm">cm</option>
                     <option value="meters">meters</option>
                     <option value="inches">inches (for feet/inches)</option>
@@ -113,7 +113,7 @@ const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
                 {/* Conditional Height Input */}
                 {heightUnit !== 'inches' ? (
                     <div>
-                        <label htmlFor="heightInCM" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your Height</label>
+                        <label htmlFor="height" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your Height</label>
                         <input type="number" step="0.01" id="height" name="heightInCM" autoComplete="height" placeholder="Enter height" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                     </div>
                 ) : (

@@ -40,7 +40,7 @@ const NutritionalLabel = ({ nutritionInfo }) => {
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Total Fat</span> 8g
+                        <span className="font-bold">Total Fat</span> {roundNumber(totalNutrients.FAT.quantity)}
                     </div>
                     <div className="font-bold">{roundNumber(totalDaily.FAT.quantity)}%</div>
                 </div>
