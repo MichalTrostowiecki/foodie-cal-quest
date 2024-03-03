@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NutritionAnalysis from "../../utils/API/NutritionAnalysis";
+import NutritionAnalysis from "../../utils/API";
 import NutritionalLabel from "../NutritionalLabel";
 import sampleData from "../../../../sampleData.json"
 
@@ -19,16 +19,18 @@ const RecipeAnalysis = () => {
         // I need to employ static data tomorrow
         // Use static data to limit API calls
         setData(sampleData);
-        setShowLabel(true)
+       
+        setShowLabel(true);
 
         // setIsLoading(true);
         // // Clear any existing error prior to fetch
         // setError(null);
-        // // Use search method from "NutritionAnalysis"
-        // await NutritionAnalysis.search()
+        // // Use analyseRecipe method from "NutritionAnalysis"
+        // await NutritionAnalysis.analyseRecipe()
         //     .then(res => {
-        //         setData(JSON.stringify(res.data, null, 2))
+        //         setData(res.data);
         //         setIsLoading(false);
+        //         setShowLabel(true)
         //         console.log(res.data)
         //     })
         //     .catch(err => {
@@ -38,6 +40,7 @@ const RecipeAnalysis = () => {
         //     });
             
     }
+    
 
     return (
 
@@ -45,7 +48,7 @@ const RecipeAnalysis = () => {
         <div>
             <h1>Recipe Analysis</h1>
             <button onClick={handleFetch}>Fetch Data</button>
-            {showLabel ? <NutritionalLabel data={data}/> : ""}
+            {showLabel ? <NutritionalLabel nutritionInfo={data}/> : ""}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
         </div>

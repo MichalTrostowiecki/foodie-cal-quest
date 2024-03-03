@@ -1,27 +1,19 @@
-import React, { useState, useRef } from "react";
-import API from '../../utils/API/SearchRecipeAPI';
+import React from "react";
+
+import MealType from "../MealType";
 
 
 const RecipeSearch = () => {
-    const [recipe, setRecipe] = useState('');
-    
-    const inputRef = useRef(null);
-
-    const getRecipe = () => {
-        API.searchRecipe(inputRef.current.value)
-            .then(response => {
-            console.log(response.data)
-            setRecipe(response.data)
-        }).catch(error => {
-            console.log(error)
-        });
-    }
 
     return (
         <div>
-            <h1>Recipe Search</h1>
-            <input type="text" placeholder="Search Recipe" ref={inputRef} />
-            <button onClick={getRecipe}>Get Data!</button>
+            <div>
+                <MealType mealType={"Breakfast"}/>
+                <MealType mealType={"Dinner"} />
+                <MealType mealType={"Lunch"} />
+                <MealType mealType={"Snack"} />
+                <MealType mealType={"Teatime"} />
+            </div>
         </div>
     )
 }
