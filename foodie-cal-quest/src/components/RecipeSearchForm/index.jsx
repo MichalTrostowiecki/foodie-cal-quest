@@ -63,7 +63,7 @@ const cuisineTypeOptions = [
   ];
   
 
-const RecipeSearchForm = ({ onSubmit, handleSearchRecipe }) => {
+const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
     const [recipeName, setRecipeName] = useState('');
     const [selectedDietOptions, setSelectedDietOptions] = useState([]);
     const [selectedHealthOptions, setSelectedHealthOptions] = useState([]);
@@ -93,6 +93,7 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe }) => {
         
         onSubmit(filteredFormData);
         handleSearchRecipe();
+        handleGetMeal(true);
   };
 
     return (

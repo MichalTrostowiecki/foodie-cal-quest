@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import NutritionAnalysis from "../../utils/API";
 import NutritionalLabel from "../NutritionalLabel";
-import sampleData from "../../../../sampleData.json"
+
+import ErrorAlert from "../ErrorAlert";
 
 const RecipeAnalysis = () => {
     // State for data we receive from API call
@@ -13,6 +14,7 @@ const RecipeAnalysis = () => {
     // State to show/hide label
     const [showLabel, setShowLabel] = useState(false)
     const [textAreaValue, setTextAreaValue] = useState(null);
+    const [showError, setShowError] = useState(false)
    
     const handleGetCalories = async () => {
         
@@ -26,34 +28,48 @@ const RecipeAnalysis = () => {
         // // Clear any existing error prior to fetch
         // setError(null);
         // // Use analyseRecipe method from "NutritionAnalysis"
+        if(textAreaValue === null) {
+            setShowError(true);
+            return
+        }
         await NutritionAnalysis.analyseRecipe(textAreaValue)
             .then(res => {
                 setData(res.data);
                 setIsLoading(false);
-                setShowLabel(true)
-                console.log(res.data)
+                setShowLabel(true);
+                setError(null); // Clear any previous errors
+                setShowError(false); // Hide the error alert if it was shown
+                console.log(res.data);
             })
             .catch(err => {
-                setError(err);
-                console.log(err);
+                const message = err.response?.data?.message || "An unexpected error occurred. Please try again.";
+                setError(message); // Message for the user
+                setShowError(true); // If any error from API show Error
                 setIsLoading(false);
             });
-        console.log("textArea value: " ,typeof textAreaValue)
-            
+        
     }
+
     
 
     return (
 
         
         <div className="mx-auto max-w-4xl p-5">
-            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analysis</h1> {/* Center the title, increase its size, and add margin */}
-            <div className="flex flex-col md:flex-row justify-around gap-4"> {/* Stack elements vertically on mobile, switch to horizontal on larger screens */}
+            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analysis</h1>
+            {showError && <ErrorAlert errorMessage={error} setShowError={setShowError} />}
+            <div className="flex flex-col md:flex-row justify-around gap-4">
+            
                 <div >
                     <label htmlFor="recipeArea" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Recipe</label>
                     <textarea
                         placeholder="Copy your recipe here..."
-                        onChange={(e) => setTextAreaValue(e.target.value)}
+                        onChange={(e) => {
+                            setTextAreaValue(e.target.value);
+                            if (showError && e.target.value.trim() !== '') {
+                                setShowError(false);
+                            }
+                        }}
                         id="recipeArea"
                         rows="10"
                         className="block p-5 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -74,7 +90,6 @@ const RecipeAnalysis = () => {
             </button>
 
             {isLoading && <p className="text-center mt-2">Loading...</p>}
-            {error && <p className="text-center text-red-500 mt-2">Error: {error}</p>}
         </div>
 
     )
