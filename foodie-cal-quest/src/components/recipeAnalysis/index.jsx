@@ -40,6 +40,7 @@ const RecipeAnalysis = () => {
         //     });
             
     }
+    
 
     return (
 
@@ -47,7 +48,7 @@ const RecipeAnalysis = () => {
         <div>
             <h1>Recipe Analysis</h1>
             <button onClick={handleFetch}>Fetch Data</button>
-            {showLabel ? <NutritionalLabel data={data}/> : ""}
+            {showLabel ? <NutritionalLabel nutritionInfo={data}/> : ""}
             {isLoading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
         </div>
