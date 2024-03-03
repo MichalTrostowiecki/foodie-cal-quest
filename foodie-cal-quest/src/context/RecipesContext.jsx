@@ -7,6 +7,7 @@ export const RecipesContext = createContext();
 export const RecipesProvider = ( { children }) => {
     
     const [recipesByMealType, setRecipesByMealType] = useState({});
+    const [userCalories, setUserCalories] = useState([]);
 
     // Function to set recipes received from API call
     const addRecipesForMealType = (mealType, newRecipes) => {
@@ -17,7 +18,7 @@ export const RecipesProvider = ( { children }) => {
     }
 
     return (
-        <RecipesContext.Provider value={{ recipesByMealType, addRecipesForMealType }}>
+        <RecipesContext.Provider value={{ recipesByMealType, addRecipesForMealType, userCalories, setUserCalories }}>
         {/* The recipes and addRecipes values are being provided to all
          child components within this context provider */}
             {children}
