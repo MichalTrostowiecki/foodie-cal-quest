@@ -36,7 +36,6 @@ const MealType = ( { mealType } ) => {
                 // addRecipes is a function coming from our custom hook
                 addRecipesForMealType(mealType, resp.data.hits)
                 setIsLoading(false)
-                console.log(resp.data.hits)
             })
             .catch(err => console.log(err));
     }
@@ -68,7 +67,7 @@ const MealType = ( { mealType } ) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-3">
                 {recipesByMealType[mealType] ? recipesByMealType[mealType].map((recipe, index) => (
-                    <RecipeCard key={index} data={recipe}/>
+                    <RecipeCard key={index} data={recipe} mealType={mealType}/>
                 )) : ""}
                 {isLoading ? "Data is loading" : ""}
             </div>
