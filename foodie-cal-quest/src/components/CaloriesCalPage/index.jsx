@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UserDataForm from "../UserDataForm"
+import { RecipesContext } from "../../context/RecipesContext";
 
 const CaloriesCalPage = () => {
 
     const [user, setUser] = useState({});
-    const [userCalories, setUserCalories] = useState([]);
+    const { userCalories, setUserCalories } = useContext(RecipesContext);
 
 
     // Calculate calories based on user activity level
