@@ -21,7 +21,7 @@ function App() {
 						<Route path='calories-calculation' element={<CaloriesCalPage />} />
 						<Route path='recipe-search' element={<RecipeSearch />} />
 						{/* Dynamic route for a recipe details */}
-						<Route path='recipe-search/:recipeName' element={<RecipeDetails />} />
+						<Route path='recipe-search/:mealType/:recipeName' element={<RecipeDetails />} />
 					</Routes>
 				</RecipesProvider>
 				
