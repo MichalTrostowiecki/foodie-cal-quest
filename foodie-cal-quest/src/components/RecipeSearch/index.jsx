@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import API from '../../utils/API/SearchRecipeAPI';
 
-// const searchInput = document.querySelector('input').value;
 
 const RecipeSearch = () => {
     const [recipe, setRecipe] = useState('');
