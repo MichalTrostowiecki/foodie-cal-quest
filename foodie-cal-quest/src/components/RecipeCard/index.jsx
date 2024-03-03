@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom'
 
-const RecipeCard = ( { data } ) => {
+const RecipeCard = ( { data, mealType } ) => {
 
     // Encode the label to handle spaces and special characters in the URL
-    const recipePath = `/recipe-search/${encodeURIComponent(data.recipe.label)}`;
+    const recipePath = `/recipe-search/${mealType}/${encodeURIComponent(data.recipe.label)}`;
 
-    //console.log("recipe Card data: ", data.recipe)
-
-
-
+ 
     return (
         <div className="relative border rounded-lg overflow-hidden shadow-lg bg-white w-full group hover:cursor-pointer">
             {/* Existing content */}
@@ -19,7 +16,10 @@ const RecipeCard = ( { data } ) => {
 
             {/* Overlay with Button */}
             <div className="absolute inset-0 bg-black bg-opacity-0 flex justify-center items-center opacity-0 group-hover:bg-opacity-50 group-hover:opacity-100 transition-opacity duration-300">
-                <Link to={recipePath}>
+                <Link to={{
+                    pathname:recipePath,
+                    state: { mealType: mealType}
+                    }}>
                     <button className="text-white font-bold py-2 px-4 rounded">
                         Details
                     </button>
