@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
 import RecipeSearchForm from "../RecipeSearchForm";
+import RecipeCard from "../RecipeCard";
 
 const MealType = ( { mealType } ) => {
 
@@ -27,8 +28,9 @@ const MealType = ( { mealType } ) => {
         
         API.searchRecipe(query)
             .then(resp => {
-                setRecipes(resp.data)
-                console.log(resp.data)
+                // We get right to the results where all the info is we need
+                setRecipes(resp.data.hits)
+                console.log(resp.data.hits)
             })
             .catch(err => console.log(err));
     }
@@ -52,13 +54,16 @@ const MealType = ( { mealType } ) => {
 
     return (
         <div className="border w-3/4 mx-auto">
-            {mealType}
+            <span className="bold text-3xl">{mealType}</span>
+            
             <div>
                 <button className={showGetMeal ? "" : "hidden"} onClick={handleGetMeal}>Get Meal</button>
                 {showForm ? <RecipeSearchForm onSubmit={onSubmit} handleSearchRecipe={handleSearchRecipe}/> : null}
             </div>
-            <div>
-                {}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-3">
+                {recipes ? recipes.map((recipe, index) => (
+                    <RecipeCard key={index} data={recipe}/>
+                )) : "Loading recipes"}
             </div>
         </div>
     )
