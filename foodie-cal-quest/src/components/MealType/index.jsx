@@ -3,13 +3,18 @@ import API from "../../utils/API";
 import RecipeSearchForm from "../RecipeSearchForm";
 import RecipeCard from "../RecipeCard";
 
+//Importing our custom hook to setRecipes with fetch data from API
+import { useRecipes } from "../../hooks/useRecipes"
+
 const MealType = ( { mealType } ) => {
 
     let query = "";
-    const [recipes, setRecipes] = useState([]);
+
+    const { recipesByMealType, addRecipesForMealType } = useRecipes();
     const [userOptions, setUserOptions] = useState(null);
     const [showGetMeal, setShowGetMeal] = useState(true);
     const [showForm, setShowForm] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const onSubmit = (formData) => {
@@ -25,11 +30,12 @@ const MealType = ( { mealType } ) => {
 
     const handleSearchRecipe = () => {
         setShowForm(!showForm);
-        
+        setIsLoading(!isLoading)
         API.searchRecipe(query)
             .then(resp => {
-                // We get right to the results where all the info is we need
-                setRecipes(resp.data.hits)
+                // addRecipes is a function coming from our custom hook
+                addRecipesForMealType(mealType, resp.data.hits)
+                setIsLoading(false)
                 console.log(resp.data.hits)
             })
             .catch(err => console.log(err));
@@ -61,9 +67,10 @@ const MealType = ( { mealType } ) => {
                 {showForm ? <RecipeSearchForm onSubmit={onSubmit} handleSearchRecipe={handleSearchRecipe}/> : null}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-3">
-                {recipes ? recipes.map((recipe, index) => (
+                {recipesByMealType[mealType] ? recipesByMealType[mealType].map((recipe, index) => (
                     <RecipeCard key={index} data={recipe}/>
-                )) : "Loading recipes"}
+                )) : ""}
+                {isLoading ? "Data is loading" : ""}
             </div>
         </div>
     )
