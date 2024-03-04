@@ -35,6 +35,7 @@ const MealType = ( { mealType } ) => {
             .then(resp => {
                 // addRecipes is a function coming from our custom hook
                 addRecipesForMealType(mealType, resp.data.hits)
+                console.log(resp)
                 setIsLoading(false)
             })
             .catch(err => console.log(err));
@@ -58,12 +59,14 @@ const MealType = ( { mealType } ) => {
 
 
     return (
-        <div className="border w-3/4 mx-auto">
-            <span className="bold text-3xl">{mealType}</span>
+        <div className="border w-3/4 mx-auto p-5 rounded-xl m-4 max-w-7xl">
+            <span className="bold text-2xl">{mealType}</span>
             
-            <div>
-                <button className={showGetMeal ? "" : "hidden"} onClick={handleGetMeal}>Get Meal</button>
-                {showForm ? <RecipeSearchForm onSubmit={onSubmit} handleSearchRecipe={handleSearchRecipe}/> : null}
+            <div className="mt-2">
+                <button className={` text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+                 ${showGetMeal ? "" : "hidden"}`}
+                 onClick={handleGetMeal}>Get Meals</button>
+                {showForm ? <RecipeSearchForm onSubmit={onSubmit} handleSearchRecipe={handleSearchRecipe} handleGetMeal={handleGetMeal}/> : null}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-3">
                 {recipesByMealType[mealType] ? recipesByMealType[mealType].map((recipe, index) => (

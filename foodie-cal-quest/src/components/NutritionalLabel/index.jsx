@@ -31,16 +31,16 @@ const NutritionalLabel = ({ nutritionInfo }) => {
             <div className="flex justify-between items-end font-extrabold">
                 <div>
                     <div className="font-bold">Amount per serving</div>
-                    <div className="text-4xl">Calories</div>
+                    <div className="text-3xl">Calories</div>
                 </div>
-                <div className="text-5xl">{roundNumber(calories)}</div>
+                <div className="text-2xl">{roundNumber(calories)}</div>
             </div>
             <div className="border-t-4 border-black text-sm pb-1">
                 <div className="text-right font-bold pt-1 pb-1">% Daily value*</div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Total Fat</span> 8g
+                        <span className="font-bold">Total Fat</span> {roundNumber(totalNutrients.FAT.quantity)}
                     </div>
                     <div className="font-bold">{roundNumber(totalDaily.FAT.quantity)}%</div>
                 </div>
@@ -53,28 +53,28 @@ const NutritionalLabel = ({ nutritionInfo }) => {
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Cholesterol</span> 0mg
+                        <span className="font-bold">Cholesterol</span> {roundNumber(totalNutrients.CHOLE.quantity)}
                     </div>
                     <div className="font-bold">{roundNumber(totalDaily.CHOLE.quantity)}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Sodium</span> 160mg
+                        <span className="font-bold">Sodium</span> {roundNumber(totalNutrients.NA.quantity)}
                     </div>
                     <div className="font-bold">{roundNumber(totalDaily.NA.quantity)}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Total Carbohydrate</span> 37g
+                        <span className="font-bold">Total Carbohydrate</span> {Math.round(totalNutrients.CHOCDF.quantity)}
                     </div>
                     <div className="font-bold">{roundNumber(totalDaily.CHOCDF.quantity)}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div className="pl-4">
-                        Dietary Fiber 4g
+                        Dietary Fiber {roundNumber(totalNutrients.FIBTG.quantity)}
                     </div>
                     <div className="font-bold">{roundNumber(totalDaily.FIBTG.quantity)}%</div>
                 </div>

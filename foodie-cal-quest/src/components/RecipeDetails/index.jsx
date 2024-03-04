@@ -51,12 +51,18 @@ const RecipeDetails = () => {
 
 
     return (
-        <div className='p-4 mx-auto'>
+        <div className='p-4 mx-auto max-w-5xl'>
             <h1 className="text-3xl text-center font-bold mb-6">{recipeDetails.recipe.label}</h1>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className="max-w-4xl mx-auto p-4">
                     <div className="flex justify-center mb-6">
                         <img src={recipeDetails.recipe.image} alt={recipeDetails.recipe.label} className="max-h-96 rounded-lg shadow-lg" />
+                    </div>
+                    <div className='flex justify-evenly'>
+                        <span>Calories: {Math.round(recipeDetails.recipe.calories)}kcal</span>
+                        <span>Protein: {Math.round(recipeDetails.recipe.totalNutrients.PROCNT.quantity)}g </span>
+                        <span>Carbs: {Math.round(recipeDetails.recipe.totalNutrients.CHOCDF.quantity)}g</span>
+                        <span>Fats: {Math.round(recipeDetails.recipe.totalNutrients.FAT.quantity)}g</span>
                     </div>
                     <div className='p-3 text-center'>
                         {dietLabels(recipeDetails)}
@@ -67,7 +73,7 @@ const RecipeDetails = () => {
                     <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>
                     <ul className="list-disc pl-8 mb-6">
                         {recipeDetails.recipe.ingredientLines.map((ingredient, index) => (
-                        <li key={index} className="mb-1">{ingredient}</li>
+                        <li key={index} className="mb-1 list-none">{ingredient}</li>
                         ))}
                     </ul>
                     <h2 className="text-2xl font-semibold mb-4">Instructions</h2>
