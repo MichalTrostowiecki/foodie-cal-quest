@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecipes } from '../../hooks/useRecipes';
 import NutritionalLabel from "../NutritionalLabel";
+import CalorieResultsRecipes from "../CalorieResultsRecipes"
 
 
 const RecipeDetails = () => {
@@ -58,12 +59,13 @@ const RecipeDetails = () => {
                     <div className="flex justify-center mb-6">
                         <img src={recipeDetails.recipe.image} alt={recipeDetails.recipe.label} className="max-h-96 rounded-lg shadow-lg" />
                     </div>
-                    <div className='flex justify-evenly'>
+                    {/* <div className='flex justify-evenly'>
                         <span>Calories: {Math.round(recipeDetails.recipe.calories)}kcal</span>
                         <span>Protein: {Math.round(recipeDetails.recipe.totalNutrients.PROCNT.quantity)}g </span>
                         <span>Carbs: {Math.round(recipeDetails.recipe.totalNutrients.CHOCDF.quantity)}g</span>
                         <span>Fats: {Math.round(recipeDetails.recipe.totalNutrients.FAT.quantity)}g</span>
-                    </div>
+                    </div> */}
+                    <CalorieResultsRecipes nutritionInfo={recipeDetails.recipe}/>
                     <div className='p-3 text-center'>
                         {dietLabels(recipeDetails)}
                     </div>
@@ -81,8 +83,8 @@ const RecipeDetails = () => {
                 </div>
                 <div className='mx-auto mt-3'>
                     <NutritionalLabel  nutritionInfo={recipeDetails.recipe}/>
-                </div>
-            </div>
+                </div>                
+            </div>            
         </div>
     )
 }

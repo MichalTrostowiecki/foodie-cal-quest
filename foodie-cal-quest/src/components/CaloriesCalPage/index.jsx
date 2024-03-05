@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import UserDataForm from "../UserDataForm"
 import { RecipesContext } from "../../context/RecipesContext";
+import CalorieResults from "../CalorieResults"
+
 
 const CaloriesCalPage = () => {
 
@@ -83,6 +85,7 @@ const CaloriesCalPage = () => {
                     return <div key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {value}</div>;
                 })}
             </div>
+            <CalorieResults  userCalories={userCalories} />
         </div>
     )
 }
