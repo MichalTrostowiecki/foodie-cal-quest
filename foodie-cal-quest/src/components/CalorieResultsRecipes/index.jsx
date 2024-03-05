@@ -13,16 +13,16 @@ const CalorieResultsRecipes = ({ nutritionInfo }) => {
 
     return (
         <>
-            <div className="max-w-2xl m-auto p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 content-center">
+            <div className="max-w-2xl m-auto p-10 content-center">
                 <div className="flex flex-row space-x-7">
                     <div>
                         <p>Calories: </p>
-                        <div style={{ width: 80, height: 80 }}>
+                        <div style={{ width: 70, height: 70 }}>
                             <CircularProgressbar
                                 value={nutritionInfo.calories || 0}
                                 text={`${Math.round(nutritionInfo.calories)}kcal`}
                                 styles={buildStyles({
-                                    pathTransitionDuration: 10,
+                                    pathTransitionDuration: 5,                                    
                                 })}
                             />
                         </div>

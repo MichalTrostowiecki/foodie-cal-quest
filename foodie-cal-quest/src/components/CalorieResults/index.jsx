@@ -13,14 +13,14 @@ const CalorieResults = ({ userCalories }) => {
 
     return (
         <>
-            <div className="max-w-2xl m-auto p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 content-center">
+            <div className="max-w-xl m-auto p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 content-center mb-5 mt-5">
                 <a href="#">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Macronutrients:</h5>
                 </a>
-                <div className="flex flex-row">
+                <div className="flex flex-row space-x-3">
                     <div>
                         <p>Calories: </p>
-                        <div style={{ width: 200, height: 200 }}>
+                        <div style={{ width: 170, height: 170 }}>
                             <CircularProgressbar
                                 value={userCalories?.baseCalories || 0}
                                 text={`${userCalories?.baseCalories || 0}kcal`}
@@ -47,7 +47,7 @@ const CalorieResults = ({ userCalories }) => {
                         <div style={{ width: 100, height: 100 }}>
                             <CircularProgressbar value={fatPercentage} text={`${userCalories?.fats?.grams || 0}g`} />
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>           
         </>
