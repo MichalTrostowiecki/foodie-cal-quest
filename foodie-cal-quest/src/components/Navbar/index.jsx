@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+    const [ showMenu, setShowMenu ] = useState(false);
+
+    // This function shows/hides burger menu when user clicks
+    const handleToggle = () => {
+        setShowMenu(!showMenu);
+    }
+
 
     return (
-
         <nav className="bg-gray-200 text-gray-800 border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -37,10 +43,7 @@ const Navbar = () => {
                 </ul>
             </div>
         </div>
-
         </nav>
-        
-
     )
 }
 
