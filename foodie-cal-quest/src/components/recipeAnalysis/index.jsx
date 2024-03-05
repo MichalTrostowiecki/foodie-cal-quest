@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NutritionAnalysis from "../../utils/API";
 import NutritionalLabel from "../NutritionalLabel";
-import "./index.css"
 
 import ErrorAlert from "../ErrorAlert";
 
