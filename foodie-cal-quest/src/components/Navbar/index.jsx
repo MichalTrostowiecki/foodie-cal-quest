@@ -24,21 +24,15 @@ const Navbar = () => {
             </button>
             <div className={`${showMenu ? '' : 'hidden'}  w-full md:block md:w-auto`} id="navbar-default">
                 <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border bg-gray-200 border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">                <li>
-                    <a href="#" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-gray-200 md:text-black md:hover:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
+                    <NavLink to='/' className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-gray-200 md:text-black md:hover:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</NavLink>
                     </li>
                     <li>
-                    <a href="#" className="block py-2 px-3 bg-gray-200 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                    <NavLink to='recipe-search' className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Recipe Search</NavLink>
                     </li>
-                    <li 
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <NavLink to='recipe-search'>Recipe Search</NavLink>
+                    <li><NavLink to='recipe-analysis' className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Recipe Analyzer</NavLink>
                     </li>
-                    <li
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><NavLink to='recipe-analysis' >Recipe Analyzer</NavLink>
-                    </li>
-                    <li
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <NavLink to='calories-calculation'>Calorie Calculator</NavLink>
+                    <li>
+                    <NavLink to='calories-calculation' className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Calorie Calculator</NavLink>
                     </li>
                 </ul>
             </div>
