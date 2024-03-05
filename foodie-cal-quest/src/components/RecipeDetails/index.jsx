@@ -51,7 +51,7 @@ const RecipeDetails = () => {
 
 
     return (
-        <div className='p-4 mx-auto max-w-5xl'>
+        <div className='recipeDetails p-4 mx-auto max-w-5xl'>
             <h1 className="text-3xl text-center font-bold mb-6">{recipeDetails.recipe.label}</h1>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className="max-w-4xl mx-auto p-4">

@@ -13,11 +13,60 @@ const NutritionalLabel = ({ nutritionInfo }) => {
         totalDaily, 
         totalNutrients, 
      } = nutritionInfo;
+
+     const portionSize = nutritionInfo.yield;
     
 
     const roundNumber = (num) => {
         return Math.round(num)
     }
+
+    let macros = {
+        calories: calories,
+        totalFat: totalNutrients.FAT.quantity,
+        totalDailyFat: totalDaily.FAT.quantity,
+        saturatedFat: totalNutrients.FASAT.quantity,
+        saturatedFatDaily: totalDaily.FASAT.quantity,
+        cholesterol: totalNutrients.CHOLE.quantity,
+        totalDailyCholesterol: totalDaily.CHOLE.quantity,
+        sodium: totalNutrients.NA.quantity,
+        totalDailySodium: totalDaily.NA.quantity,
+        totalCarbohydrate: totalNutrients.CHOCDF.quantity,
+        totalDailyCarbohydrate: totalDaily.CHOCDF.quantity,
+        dietaryFiber: totalNutrients.FIBTG.quantity,
+        totalDieteryFiber: totalDaily.FIBTG.quantity,
+        totalSugar: totalNutrients.SUGAR.quantity,
+        totalProtein: totalNutrients.PROCNT.quantity,
+        vitaminD: totalNutrients.VITD.quantity,
+        totalVitaminD: totalDaily.VITD.quantity,
+        calcium: totalNutrients.CA.quantity,
+        totalCalcium: totalDaily.CA.quantity,
+        iron: totalNutrients.FE.quantity,
+        totalIron: totalDaily.FE.quantity,
+        potassium: totalNutrients.K.quantity,
+        totalDailyPotassium: totalDaily.K.quantity,
+    }
+
+    // Function to calculate label macros for 1 portion
+    const getOnePortion = (macros) => {
+        if(portionSize > 1) {
+            let newMacro = {};
+            for (let key in macros) {
+                newMacro[key] = Math.round(macros[key] / portionSize);
+            }
+            return newMacro
+        } else {
+            let newMacro = {};
+            for (let key in macros) {
+                newMacro[key] = Math.round(macros[key])
+            }
+            return newMacro
+        }
+    }
+    // New Macros based on 1 portion
+    const onePortionSize = getOnePortion(macros);
+
+    console.log("onePortionSize: " ,onePortionSize)
 
     
     return (
@@ -30,82 +79,82 @@ const NutritionalLabel = ({ nutritionInfo }) => {
             </div>
             <div className="flex justify-between items-end font-extrabold">
                 <div>
-                    <div className="font-bold">Amount per serving</div>
+                    <div className="font-bold">Amount per serving: 1</div>
                     <div className="text-3xl">Calories</div>
                 </div>
-                <div className="text-2xl">{roundNumber(calories)}</div>
+                <div className="text-2xl">{onePortionSize.calories}</div>
             </div>
             <div className="border-t-4 border-black text-sm pb-1">
                 <div className="text-right font-bold pt-1 pb-1">% Daily value*</div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Total Fat</span> {roundNumber(totalNutrients.FAT.quantity)}
+                        <span className="font-bold">Total Fat</span> {onePortionSize.totalFat}
                     </div>
-                    <div className="font-bold">{roundNumber(totalDaily.FAT.quantity)}%</div>
+                    <div className="font-bold">{onePortionSize.totalDailyFat}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
-                    <div>Saturated Fat {roundNumber(totalNutrients.FASAT.quantity)}g</div>
-                    <div className="font-bold">{roundNumber(totalDaily.FASAT.quantity)}%</div>
+                    <div>Saturated Fat {onePortionSize.saturatedFat}g</div>
+                    <div className="font-bold">{onePortionSize.saturatedFatDaily}%</div>
                 </div>
                 
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Cholesterol</span> {roundNumber(totalNutrients.CHOLE.quantity)}
+                        <span className="font-bold">Cholesterol</span> {onePortionSize.cholesterol}
                     </div>
-                    <div className="font-bold">{roundNumber(totalDaily.CHOLE.quantity)}%</div>
+                    <div className="font-bold">{onePortionSize.totalDailyCholesterol}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Sodium</span> {roundNumber(totalNutrients.NA.quantity)}
+                        <span className="font-bold">Sodium</span> {onePortionSize.sodium}
                     </div>
-                    <div className="font-bold">{roundNumber(totalDaily.NA.quantity)}%</div>
+                    <div className="font-bold">{onePortionSize.totalDailySodium}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-bold">Total Carbohydrate</span> {Math.round(totalNutrients.CHOCDF.quantity)}
+                        <span className="font-bold">Total Carbohydrate</span> {onePortionSize.totalCarbohydrate}
                     </div>
-                    <div className="font-bold">{roundNumber(totalDaily.CHOCDF.quantity)}%</div>
+                    <div className="font-bold">{onePortionSize.totalDailyCarbohydrate}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
                     <div className="pl-4">
-                        Dietary Fiber {roundNumber(totalNutrients.FIBTG.quantity)}
+                        Dietary Fiber {onePortionSize.dietaryFiber}
                     </div>
-                    <div className="font-bold">{roundNumber(totalDaily.FIBTG.quantity)}%</div>
+                    <div className="font-bold">{onePortionSize.totalDieteryFiber}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="pl-4">
-                    Total Sugar {roundNumber(totalNutrients.SUGAR.quantity)}g
+                    Total Sugar {onePortionSize.totalSugar}g
                 </div>
                 <hr className="border-gray-500"/>
                 <div>
-                    <span className="font-bold">Protein</span> {roundNumber(totalNutrients.PROCNT.quantity)}g
+                    <span className="font-bold">Protein</span> {onePortionSize.totalProtein}g
                 </div>
             </div>
             <div className="border-t-8 border-black pt-1 text-sm">
                 <div className="flex justify-between">
-                    <div>Vitamin D {roundNumber(totalNutrients.VITD.quantity)}µg</div>
-                    <div>{roundNumber(totalDaily.VITD.quantity)}%</div>
+                    <div>Vitamin D {onePortionSize.vitaminD}µg</div>
+                    <div>{onePortionSize.totalVitaminD}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
-                    <div>Calcium {roundNumber(totalNutrients.CA.quantity)}mg</div>
-                    <div>{roundNumber(totalDaily.CA.quantity)}%</div>
+                    <div>Calcium {onePortionSize.calcium}mg</div>
+                    <div>{onePortionSize.totalCalcium}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
-                    <div>Iron {roundNumber(totalNutrients.FE.quantity)}mg</div>
-                    <div>{roundNumber(totalDaily.FE.quantity)}%</div>
+                    <div>Iron {onePortionSize.iron}mg</div>
+                    <div>{onePortionSize.totalIron}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="flex justify-between">
-                    <div>Potassium {roundNumber(totalNutrients.K.quantity)}mg</div>
-                    <div>{roundNumber(totalDaily.K.quantity)}%</div>
+                    <div>Potassium {onePortionSize.potassium}mg</div>
+                    <div>{onePortionSize.totalDailyPotassium}%</div>
                 </div>
                 <div className="border-t-4 border-black flex leading-none text-xs pt-2 pb-1">
                     <div className="pr-1">*</div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NutritionAnalysis from "../../utils/API";
 import NutritionalLabel from "../NutritionalLabel";
+import "./index.css"
 
 import ErrorAlert from "../ErrorAlert";
 
@@ -39,7 +40,6 @@ const RecipeAnalysis = () => {
                 setShowLabel(true);
                 setError(null); // Clear any previous errors
                 setShowError(false); // Hide the error alert if it was shown
-                console.log(res.data);
             })
             .catch(err => {
                 const message = err.response?.data?.message || "An unexpected error occurred. Please try again.";
@@ -55,8 +55,8 @@ const RecipeAnalysis = () => {
     return (
 
         
-        <div className="mx-auto max-w-4xl p-5">
-            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analysis</h1>
+        <div className="recipe-analysis mx-auto max-w-4xl p-5 border mt-10 rounded">
+            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analyzer</h1>
             {showError && <ErrorAlert errorMessage={error} setShowError={setShowError} />}
             <div className="flex flex-col md:flex-row justify-around gap-4">
             
