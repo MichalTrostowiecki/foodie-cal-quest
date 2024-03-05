@@ -64,7 +64,7 @@ const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
 
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-sm mx-auto" autoComplete="on">
+        <form onSubmit={handleSubmit} className="userDataForm max-w-sm mx-auto border p-5 mt-10 rounded" autoComplete="on">
             {/* Name Section */}
             <div className="mb-5">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>

@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    height: 100%;
+    background-color: #f4f2f3;
+    
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.mealType {
+    background-color: white;
+}
+
+.userDataForm {
+    background-color: white;
+}
