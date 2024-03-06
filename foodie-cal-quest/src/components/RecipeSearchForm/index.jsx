@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import './index.css'
+
 
 // Options for the select fields
 const dietOptions = [
@@ -64,7 +66,7 @@ const cuisineTypeOptions = [
   ];
   
 
-const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
+const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal, }) => {
     const [recipeName, setRecipeName] = useState('');
     const [selectedDietOptions, setSelectedDietOptions] = useState([]);
     const [selectedHealthOptions, setSelectedHealthOptions] = useState([]);
@@ -72,8 +74,6 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
     const [selectedDishType, setSelectedDishType] = useState(null);
     const [caloriesPreference, setCaloriesPreference] = useState('');
     const [caloriesRange, setCaloriesRange] = useState({ min: '', max: '' });
-  
-
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -84,7 +84,7 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
         } else if (caloriesPreference === 'Min - Max') {
             caloriesValue = `${caloriesRange.min}-${caloriesRange.max}`; // Format as a range for Min - Max
         } else if (caloriesPreference === 'Maximum') {
-            caloriesValue = `${caloriesRange.max}`; // Assuming maximum implies a range from 0 to the specified max
+            caloriesValue = `${caloriesRange.max}`; 
         }
 
         // In formData when user does not choose any option it returns undefined
