@@ -46,10 +46,6 @@ const RecipeDetails = () => {
         }
     }
 
-
-
-
-
     return (
         <div className='recipeDetails p-4 mx-auto max-w-5xl'>
             <h1 className="text-3xl text-center font-bold mb-6">{recipeDetails.recipe.label}</h1>
