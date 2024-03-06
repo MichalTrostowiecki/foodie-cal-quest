@@ -66,9 +66,6 @@ const NutritionalLabel = ({ nutritionInfo }) => {
     // New Macros based on 1 portion
     const onePortionSize = getOnePortion(macros);
 
-    console.log("onePortionSize: " ,onePortionSize)
-
-    
     return (
        
         // //<!-- https://www.fda.gov/food/food-labeling-nutrition/changes-nutrition-facts-label -->
@@ -179,7 +176,7 @@ NutritionalLabel.propTypes = {
         mealType: PropTypes.arrayOf(PropTypes.string).isRequired,
         totalNutrients: PropTypes.object.isRequired,
         totalNutrientsKCal: PropTypes.object,
-        yield: PropTypes.string.isRequired
+        yield: PropTypes.number.isRequired
         // Include any other fields you have in nutritionInfo here
     }).isRequired,
 };

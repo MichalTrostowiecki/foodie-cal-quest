@@ -27,8 +27,6 @@ export default {
             return axios.post(url, requestBody);
         },
         searchRecipe: function(query) {
-            console.log("SearchRecipe Fetch has been called")
-            console.log("query",query)
             // Michal's key
             const apiKEY = '&app_key=0f50b6574cfb50c8691da1f9049834ff';
             // Michal's app ID
