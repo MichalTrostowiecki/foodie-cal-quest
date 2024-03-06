@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import API from "../../utils/API";
 import RecipeSearchForm from "../RecipeSearchForm";
 import RecipeCard from "../RecipeCard";
+import PropTypes from "prop-types"
 
 //Importing our custom hook to setRecipes with fetch data from API
 import { useRecipes } from "../../hooks/useRecipes"
@@ -81,3 +82,7 @@ const MealType = ( { mealType } ) => {
 
 
 export default MealType;
+
+MealType.propTypes = {
+    mealType: PropTypes.string.isRequired,
+}
