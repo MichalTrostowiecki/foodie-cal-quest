@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 
 const RecipeCard = ( { data, mealType } ) => {
 
-    console.log(data)
-
     // Encode the label to handle spaces and special characters in the URL
     const recipePath = `/recipe-search/${mealType}/${encodeURIComponent(data.recipe.label)}`;
 
