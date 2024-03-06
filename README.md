@@ -37,7 +37,7 @@ Link to deployed website: https://main--foodie-calories-quest.netlify.app/
 
 1. Clone the repository:
    ```sh
-    git clone https://github.com/yourusername/foodie-calories-quest.git
+    git clone https://github.com/MichalTrostowiecki/foodie-calories-quest.git
 2. Navigate to the project directory:
     ```sh
     cd foodie-calories-quest
