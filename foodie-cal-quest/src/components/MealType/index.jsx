@@ -18,6 +18,7 @@ const MealType = ( { mealType } ) => {
 
 
     const onSubmit = (formData) => {
+        console.log("form-data",formData)
         setUserOptions(formData);
         query = optionsToQuery(formData);
 
