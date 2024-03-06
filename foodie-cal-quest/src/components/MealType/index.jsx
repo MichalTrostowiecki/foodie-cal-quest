@@ -19,7 +19,6 @@ const MealType = ( { mealType } ) => {
 
 
     const onSubmit = (formData) => {
-        console.log("form-data",formData)
         setUserOptions(formData);
         query = optionsToQuery(formData);
 
@@ -37,7 +36,6 @@ const MealType = ( { mealType } ) => {
             .then(resp => {
                 // addRecipes is a function coming from our custom hook
                 addRecipesForMealType(mealType, resp.data.hits)
-                console.log(resp)
                 setIsLoading(false)
             })
             .catch(err => console.log(err));
@@ -61,11 +59,11 @@ const MealType = ( { mealType } ) => {
 
 
     return (
-        <div className="mealType border w-3/4 mx-auto p-5 rounded-xl m-4 max-w-7xl">
+        <div className="mealType border  w-11/12 md:w-3/4 mx-auto md:p-5 p-8 rounded-xl max-w-7xl m-4">
             <span className="bold text-2xl hover:text-FBC02D cursor-pointer">{mealType}</span>
             
             <div className="mt-2">
-                <button className={` text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+                <button className={` bg-transparent hover:bg-green-500 text-sm text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded
                  ${showGetMeal ? "" : "hidden"}`}
                  onClick={handleGetMeal}>Get Meals</button>
                 {showForm ? <RecipeSearchForm onSubmit={onSubmit} handleSearchRecipe={handleSearchRecipe} handleGetMeal={handleGetMeal}/> : null}
