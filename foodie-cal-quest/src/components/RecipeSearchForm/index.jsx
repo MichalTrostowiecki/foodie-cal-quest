@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 // Options for the select fields
 const dietOptions = [
@@ -159,7 +160,7 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
                         name="minCalories"
                         value={caloriesRange.min}
                         onChange={(e) => setCaloriesRange({ ...caloriesRange, min: e.target.value })}
-                        placeholder="Enter minimum calories"
+                        placeholder="Enter min calories"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                         />
@@ -174,7 +175,7 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
                         name="maxCalories"
                         value={caloriesRange.max}
                         onChange={(e) => setCaloriesRange({ ...caloriesRange, max: e.target.value })}
-                        placeholder="Enter maximum calories"
+                        placeholder="Enter max calories"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                         />
@@ -189,7 +190,7 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
                         name="maxCalories"
                         value={caloriesRange.max}
                         onChange={(e) => setCaloriesRange({ min: '', max: e.target.value })}
-                        placeholder="Enter maximum calories"
+                        placeholder="Enter max calories"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text:white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                         />
@@ -229,9 +230,16 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
                 />
             </div>
 
-            <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Search Recipe</button>
+            <button type="submit" className="bg-transparent hover:bg-green-500 text-sm text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">Search Recipe</button>
         </form>
   );
 };
 
 export default RecipeSearchForm;
+
+
+RecipeSearchForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    handleSearchRecipe: PropTypes.func.isRequired,
+    handleGetMeal: PropTypes.func.isRequired,
+};
