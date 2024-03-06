@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 const ErrorAlert = ( { setShowError, errorMessage } ) => {
 
@@ -30,3 +30,9 @@ const ErrorAlert = ( { setShowError, errorMessage } ) => {
 }
 
 export default ErrorAlert;
+
+
+ErrorAlert.propTypes = {
+    setShowError: PropTypes.func.isRequired,
+    errorMessage: PropTypes.func.isRequired,
+}

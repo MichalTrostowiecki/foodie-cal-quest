@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
     const [heightUnit, setHeightUnit] = useState('cm');
@@ -171,3 +172,12 @@ const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
 
 
 export default UserDataForm;
+
+
+
+
+UserDataForm.propTypes = {
+    setUser: PropTypes.func.isRequired,
+    calculateCalories: PropTypes.func.isRequired,
+    calculateMacro: PropTypes.func.isRequired,
+}

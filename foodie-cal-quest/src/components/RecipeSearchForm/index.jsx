@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 // Options for the select fields
 const dietOptions = [
@@ -235,3 +236,10 @@ const RecipeSearchForm = ({ onSubmit, handleSearchRecipe, handleGetMeal }) => {
 };
 
 export default RecipeSearchForm;
+
+
+RecipeSearchForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    handleSearchRecipe: PropTypes.func.isRequired,
+    handleGetMeal: PropTypes.func.isRequired,
+};

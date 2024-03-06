@@ -179,6 +179,7 @@ NutritionalLabel.propTypes = {
         mealType: PropTypes.arrayOf(PropTypes.string).isRequired,
         totalNutrients: PropTypes.object.isRequired,
         totalNutrientsKCal: PropTypes.object,
+        yield: PropTypes.string.isRequired
         // Include any other fields you have in nutritionInfo here
     }).isRequired,
 };
