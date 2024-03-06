@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
     const [heightUnit, setHeightUnit] = useState('cm');
@@ -64,7 +65,7 @@ const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
 
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-sm mx-auto" autoComplete="on">
+        <form onSubmit={handleSubmit} className="userDataForm max-w-sm mx-auto border p-5 mt-10 rounded" autoComplete="on">
             {/* Name Section */}
             <div className="mb-5">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
@@ -164,10 +165,17 @@ const UserDataForm = ({ setUser, calculateCalories, calculateMacro }) => {
             {/* End of Activity Level Section  */}
             {/* Test comment  */}
             
-            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Calculate</button>
+            <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Calculate</button>
         </form>
     );
 };
 
 
 export default UserDataForm;
+
+
+UserDataForm.propTypes = {
+    setUser: PropTypes.func.isRequired,
+    calculateCalories: PropTypes.func.isRequired,
+    calculateMacro: PropTypes.func.isRequired,
+}

@@ -12,8 +12,6 @@ const RecipeDetails = () => {
     const decodedRecipeName = decodeURIComponent(recipeName);
     // Destructiring state from custom hook "useRecipes"
     const { recipesByMealType } = useRecipes();
-
-    console.log(recipesByMealType)
     
     // Variable to store details for found recipe
     let recipeDetails = null;
@@ -21,7 +19,7 @@ const RecipeDetails = () => {
      // Find the recipe in context state
     if(recipesByMealType[mealType]) {
         recipeDetails = recipesByMealType[mealType].find(item => item.recipe.label === decodedRecipeName);
-        console.log("recipeDetails: ", recipeDetails);
+        
     }
 
     if(!recipeDetails) {
@@ -47,12 +45,8 @@ const RecipeDetails = () => {
         }
     }
 
-
-
-
-
     return (
-        <div className='p-4 mx-auto max-w-5xl'>
+        <div className='recipeDetails p-4 mx-auto max-w-5xl'>
             <h1 className="text-3xl text-center font-bold mb-6">{recipeDetails.recipe.label}</h1>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className="max-w-4xl mx-auto p-4">

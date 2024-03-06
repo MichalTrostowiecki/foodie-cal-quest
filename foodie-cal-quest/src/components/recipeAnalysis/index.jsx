@@ -39,7 +39,6 @@ const RecipeAnalysis = () => {
                 setShowLabel(true);
                 setError(null); // Clear any previous errors
                 setShowError(false); // Hide the error alert if it was shown
-                console.log(res.data);
             })
             .catch(err => {
                 const message = err.response?.data?.message || "An unexpected error occurred. Please try again.";
@@ -55,8 +54,8 @@ const RecipeAnalysis = () => {
     return (
 
         
-        <div className="mx-auto max-w-4xl p-5">
-            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analysis</h1>
+        <div className="recipe-analysis mx-auto max-w-4xl p-5 border mt-10 rounded">
+            <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white my-6">Recipe Analyzer</h1>
             {showError && <ErrorAlert errorMessage={error} setShowError={setShowError} />}
             <div className="flex flex-col md:flex-row justify-around gap-4">
             
@@ -83,7 +82,7 @@ const RecipeAnalysis = () => {
             </div>
 
             <button
-                className=" mt-4 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                className="mt-2 bg-transparent hover:bg-green-500 text-sm text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
                 onClick={handleGetCalories}
             >
                 Get Calories

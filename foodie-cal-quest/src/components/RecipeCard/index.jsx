@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const RecipeCard = ( { data, mealType } ) => {
 
@@ -30,3 +31,14 @@ const RecipeCard = ( { data, mealType } ) => {
 }
 
 export default RecipeCard;
+
+
+RecipeCard.propTypes = {
+    data: PropTypes.shape({
+        recipe: PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired
+        }).isRequired,
+    }).isRequired,
+    mealType: PropTypes.string.isRequired
+}
