@@ -1,0 +1,12 @@
+.form-hidden {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+}
+
+.form-visible {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    transition: opacity 2s, visibility 2s, height 2s;
+}

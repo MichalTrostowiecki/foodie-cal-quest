@@ -20,6 +20,12 @@ Ensure you have [Node.js](https://nodejs.org/en/) installed on your system to ma
 
 ## Built With
 
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+
 - React.js - A JavaScript library for building user interfaces
 - Axios - Promise-based HTTP client for the browser and node.js
 - Tailwind CSS - A utility-first CSS framework for rapid UI development
