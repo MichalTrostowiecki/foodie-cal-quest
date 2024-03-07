@@ -53,13 +53,9 @@ const RecipeDetails = () => {
                     <div className="flex justify-center mb-6">
                         <img src={recipeDetails.recipe.image} alt={recipeDetails.recipe.label} className="max-h-96 rounded-lg shadow-lg" />
                     </div>
-                    {/* <div className='flex justify-evenly'>
-                        <span>Calories: {Math.round(recipeDetails.recipe.calories)}kcal</span>
-                        <span>Protein: {Math.round(recipeDetails.recipe.totalNutrients.PROCNT.quantity)}g </span>
-                        <span>Carbs: {Math.round(recipeDetails.recipe.totalNutrients.CHOCDF.quantity)}g</span>
-                        <span>Fats: {Math.round(recipeDetails.recipe.totalNutrients.FAT.quantity)}g</span>
-                    </div> */}
-                    <CalorieResultsRecipes nutritionInfo={recipeDetails.recipe}/>
+                    <div className='mb-5'>
+                        <CalorieResultsRecipes nutritionInfo={recipeDetails.recipe}/>
+                    </div>
                     <div className='p-3 text-center'>
                         {dietLabels(recipeDetails)}
                     </div>

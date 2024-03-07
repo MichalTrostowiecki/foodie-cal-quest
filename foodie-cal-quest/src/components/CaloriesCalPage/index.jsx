@@ -60,7 +60,7 @@ const CaloriesCalPage = () => {
     
 
     return (
-        <div>
+        <div className="mb-16">
             <CalorieResults userCalories={userCalories} user={user}/>
             <UserDataForm 
                     setUser={setUser}

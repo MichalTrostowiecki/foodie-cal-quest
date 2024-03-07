@@ -64,7 +64,7 @@ const NutritionalLabel = ({ nutritionInfo }) => {
                     <div className="pl-4">
                         Dietary Fiber {onePortionSize.dietaryFiber}
                     </div>
-                    <div className="font-bold">{onePortionSize.totalDieteryFiber}%</div>
+                    <div className="font-bold">{onePortionSize.totalDietaryFiber}%</div>
                 </div>
                 <hr className="border-gray-500"/>
                 <div className="pl-4">

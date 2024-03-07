@@ -6,7 +6,7 @@ import MealType from "../MealType";
 const RecipeSearch = () => {
 
     return (
-        <div className="mt-10">
+        <div className="mt-10 mb-12">
             <div>
                 <MealType mealType={"Breakfast"}/>
                 <MealType mealType={"Dinner"} />
