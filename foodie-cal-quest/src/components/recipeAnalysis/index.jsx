@@ -74,6 +74,12 @@ const RecipeAnalysis = () => {
                         className="block p-5 w-72 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                     </textarea>
+                    <button
+                className="mt-2 bg-transparent hover:bg-green-500 text-sm text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                onClick={handleGetCalories}
+            >
+                Get Calories
+            </button>
                 </div>
                 <div className="p-5 mx-auto">
                     {/* Conditional rendering for nutritional label */}
@@ -81,12 +87,7 @@ const RecipeAnalysis = () => {
                 </div>
             </div>
 
-            <button
-                className="mt-2 bg-transparent hover:bg-green-500 text-sm text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                onClick={handleGetCalories}
-            >
-                Get Calories
-            </button>
+           
 
             {isLoading && <p className="text-center mt-2">Loading...</p>}
         </div>

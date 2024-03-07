@@ -12,7 +12,6 @@ const CaloriesCalPage = () => {
 
     // Calculate calories based on user activity level
     const calculateCalories = (userData) => {
-        console.log(user);
         let totalCal = 0;
 
         // If user is a male use this formula
@@ -60,32 +59,15 @@ const CaloriesCalPage = () => {
     };
     
 
-
-
-
-
     return (
         <div>
+            <CalorieResults userCalories={userCalories} user={user}/>
             <UserDataForm 
-                setUser={setUser}
-                calculateCalories={calculateCalories}
-                setUserCalories={setUserCalories}
-                calculateMacro={calculateMacro}                
-            />
-            {/* Loop through the userCalories just to print the data to the screen */}
-            {/* <div>
-                {Object.entries(userCalories).map(([key, value]) => {
-                    if (typeof value === 'object') {
-                        return (
-                            <div key={key}>
-                                {key.charAt(0).toUpperCase() + key.slice(1)}: {value.grams} g ({value.calories} kcal)
-                            </div>
-                        );
-                    }
-                    return <div key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {value}</div>;
-                })}
-            </div> */}
-            <CalorieResults  userCalories={userCalories} />
+                    setUser={setUser}
+                    calculateCalories={calculateCalories}
+                    setUserCalories={setUserCalories}
+                    calculateMacro={calculateMacro}                
+                />
         </div>
     )
 }
