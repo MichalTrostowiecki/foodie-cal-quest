@@ -8,7 +8,7 @@ export const RecipesContext = createContext();
 export const RecipesProvider = ( { children }) => {
     
     const [recipesByMealType, setRecipesByMealType] = useState({});
-    const [userCalories, setUserCalories] = useState([]);
+    const [userCalories, setUserCalories] = useState({});
 
     // Function to set recipes received from API call
     const addRecipesForMealType = (mealType, newRecipes) => {

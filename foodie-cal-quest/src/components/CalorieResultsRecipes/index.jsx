@@ -1,53 +1,69 @@
 import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import useNutritionPortion from "../../hooks/useNutritionInfo";
 
 const CalorieResultsRecipes = ({ nutritionInfo }) => {
-    // Calculate total grams of fat, protein, and carbs
-    const totalGrams = (nutritionInfo.totalNutrients.PROCNT.quantity || 0) + (nutritionInfo.totalNutrients.CHOCDF.quantity || 0) + (nutritionInfo.totalNutrients.FAT.quantity || 0);
 
-    // Calculate percentage of fat, protein, and carbs
-    const fatPercentage = totalGrams === 0 ? 0 : (nutritionInfo.totalNutrients.FAT.quantity / totalGrams) * 100;
-    const proteinPercentage = totalGrams === 0 ? 0 : (nutritionInfo.totalNutrients.PROCNT.quantity / totalGrams) * 100;
-    const carbsPercentage = totalGrams === 0 ? 0 : (nutritionInfo.totalNutrients.CHOCDF.quantity / totalGrams) * 100;
+    // Using custom hook to get one portion values for a recipe
+    const onePortion = useNutritionPortion(nutritionInfo)
+ 
+    // Calculating calories for each macro based on grams of each
+    const proteinCalories = onePortion.totalProtein * 4;
+    const carbsCalories = onePortion.totalCarbohydrate * 4;
+    const fatsCalories = onePortion.totalFat * 9;
+
+    // Calculating total % of total Calories
+    const proteinCalPercentage = (proteinCalories / onePortion.calories) * 100;
+    const carbsCalPercentage = (carbsCalories / onePortion.calories) * 100;
+    const fatsCalPercentage = (fatsCalories / onePortion.calories) * 100;
 
     return (
-        <>
-            <div className="max-w-2xl m-auto p-10 content-center">
-                <div className="flex flex-row space-x-7">
-                    <div>
-                        <p>Calories: </p>
-                        <div style={{ width: 70, height: 70 }}>
-                            <CircularProgressbar
-                                value={nutritionInfo.calories || 0}
-                                text={`${Math.round(nutritionInfo.calories)}kcal`}
-                                styles={buildStyles({
-                                    pathTransitionDuration: 5,                                    
-                                })}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <p>Protein: </p>
-                        <div style={{ width: 70, height: 70 }}>
-                            <CircularProgressbar value={proteinPercentage} text={`${Math.round(nutritionInfo.totalNutrients.PROCNT.quantity || 0)}g`} />
-                        </div>
-                    </div>
-                    <div>
-                        <p>Carbs: </p>
-                        <div style={{ width: 70, height: 70 }}>
-                            <CircularProgressbar value={carbsPercentage} text={`${Math.round(nutritionInfo.totalNutrients.CHOCDF.quantity || 0)}g`} />
-                        </div>
-                    </div>
-                    <div>
-                        <p>Fats: </p>
-                        <div style={{ width: 70, height: 70 }}>
-                            <CircularProgressbar value={fatPercentage} text={`${Math.round(nutritionInfo.totalNutrients.FAT.quantity || 0)}g`} />
-                        </div>
-                    </div>
+        <div className="grid grid-cols-4 gap-4 max-w-lg mx-auto p-2">
+            <div className="w-15 h-15 md:w-20 md:h-20 mx-auto">
+                <p className="text-center font-semibold">Calories:</p>
+                <div className="flex justify-center">
+                    <CircularProgressbar
+                        value={onePortion.calories || 0}
+                        text={`${Math.round(onePortion.calories)}kcal`}
+                        styles={buildStyles({
+                            pathTransitionDuration: 0.5,
+                            textColor: '#4a5568',
+                            pathColor: '#48bb78',
+                            trailColor: '#cbd5e0',
+                        })}
+                    />
                 </div>
-            </div>           
-        </>
+            </div>
+            <div className="w-15 h-15 md:w-20 md:h-20 mx-auto">
+                <p className="text-center font-semibold">Protein:</p>
+                <div className="flex justify-center">
+                    <CircularProgressbar
+                        value={proteinCalPercentage}
+                        text={`${onePortion.totalProtein}g`}
+                    />
+                </div>
+            </div>
+            <div className="w-15 h-15 md:w-20 md:h-20 mx-auto">
+                <p className="text-center font-semibold">Carbs:</p>
+                <div className="flex justify-center">
+                    <CircularProgressbar
+                        value={carbsCalPercentage}
+                        text={`${onePortion.totalCarbohydrate}g`}
+                    />
+                </div>
+            </div>
+            <div className="w-15 h-15 md:w-20 md:h-20 mx-auto">
+                <p className="text-center font-semibold">Fats:</p>
+                <div className="flex justify-center">
+                    <CircularProgressbar
+                        value={fatsCalPercentage}
+                        text={`${onePortion.totalFat}g`}
+                    />
+                </div>
+            </div>
+
+    </div>
     );
 };
 

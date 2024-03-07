@@ -1,78 +1,20 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import useNutritionPortion from "../../hooks/useNutritionInfo";
 
 const NutritionalLabel = ({ nutritionInfo }) => {
-    // Initialize your variables here
 
+    // Custom hook to return one portion values from Nutrion Info
+    const onePortionSize = useNutritionPortion(nutritionInfo);
 
-    // Now assign the values from the chosen source
     
-    const { 
-        calories, 
-        totalWeight, 
-        totalDaily, 
-        totalNutrients, 
-     } = nutritionInfo;
-
-     const portionSize = nutritionInfo.yield;
-    
-
-    const roundNumber = (num) => {
-        return Math.round(num)
-    }
-
-    let macros = {
-        calories: calories,
-        totalFat: totalNutrients.FAT.quantity,
-        totalDailyFat: totalDaily.FAT.quantity,
-        saturatedFat: totalNutrients.FASAT.quantity,
-        saturatedFatDaily: totalDaily.FASAT.quantity,
-        cholesterol: totalNutrients.CHOLE.quantity,
-        totalDailyCholesterol: totalDaily.CHOLE.quantity,
-        sodium: totalNutrients.NA.quantity,
-        totalDailySodium: totalDaily.NA.quantity,
-        totalCarbohydrate: totalNutrients.CHOCDF.quantity,
-        totalDailyCarbohydrate: totalDaily.CHOCDF.quantity,
-        dietaryFiber: totalNutrients.FIBTG.quantity,
-        totalDieteryFiber: totalDaily.FIBTG.quantity,
-        totalSugar: totalNutrients.SUGAR.quantity,
-        totalProtein: totalNutrients.PROCNT.quantity,
-        vitaminD: totalNutrients.VITD.quantity,
-        totalVitaminD: totalDaily.VITD.quantity,
-        calcium: totalNutrients.CA.quantity,
-        totalCalcium: totalDaily.CA.quantity,
-        iron: totalNutrients.FE.quantity,
-        totalIron: totalDaily.FE.quantity,
-        potassium: totalNutrients.K.quantity,
-        totalDailyPotassium: totalDaily.K.quantity,
-    }
-
-    // Function to calculate label macros for 1 portion
-    const getOnePortion = (macros) => {
-        if(portionSize > 1) {
-            let newMacro = {};
-            for (let key in macros) {
-                newMacro[key] = Math.round(macros[key] / portionSize);
-            }
-            return newMacro
-        } else {
-            let newMacro = {};
-            for (let key in macros) {
-                newMacro[key] = Math.round(macros[key])
-            }
-            return newMacro
-        }
-    }
-    // New Macros based on 1 portion
-    const onePortionSize = getOnePortion(macros);
-
     return (
        
         // //<!-- https://www.fda.gov/food/food-labeling-nutrition/changes-nutrition-facts-label -->
         <div className="p-1 border-2 border-black font-sans w-72">
             <div className="text-4xl font-extrabold leading-none">Nutrition Facts</div>
             <div className="flex justify-between font-bold border-b-8 border-black">
-                <div>Serving size</div><div>{roundNumber(totalWeight)}g</div>
+                <div>Serving size</div><div>{onePortionSize.servingSize}g</div>
             </div>
             <div className="flex justify-between items-end font-extrabold">
                 <div>
